@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="cupcake">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,38 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    
+    <header>
+        <h2 class="text-6xl font-bold text-center py-3"> <span class="text-red-500">H</span>unting <span class="text-red-500">Phone</span> </h2>
+
+    </header>
+
+    <main class="container mx-auto mt-6">
+
+        <section class="max-w-screen-xl flex gap-2 mx-auto">
+            <input
+            id="scarch-fild" type="text" placeholder="Scarch..." class="input input-bordered input-primary w-full " />
+  <button onclick="handleScarch()" class="btn btn-primary">Scarch</button>
+        </section>
+
+        <!-- scarch result  -->
+        <section>
+             <!-- use loder -->
+            <div id="loder" class="hidden text-center my-5 text-purple-600">
+                <span class="loading loading-dots loading-lg"></span>
+            </div>
+
+            <div class="max-w-screen-xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 mt-5 sm:grid-cols-1 gap-4" id="phone-container">
+
+            </div>
+            <!-- show all btn -->
+            
+             <div id="show-all-container" class="hidden ">
+                <button class="btn btn-primary mx-auto block my-4">Show All</button>
+             </div>
+        </section>
+    </main>
+
+    <footer></footer>
 
     <!-- js connected -->
      <script src="./js/phone.js"></script>
