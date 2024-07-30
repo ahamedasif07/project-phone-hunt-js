@@ -11,11 +11,17 @@
 </head>
 <body>
     <header>
+        <div class="navbar bg-gray-300 text-primary-content">
+          <button class="btn btn-ghost text-xl"><span class="text-red-700 font-bold text-3xl">Mobile <span class="text-black">.</span></span><span class="text-blue-700 font-bold text-3xl">Dokan <span class="text-black">.</span></span></button>
+        </div>
+      </nav>
+
+
         <h2 class="text-6xl font-bold text-center py-3"> <span class="text-red-500">H</span>unting <span class="text-red-500">Phone</span> </h2>
 
     </header>
 
-    <main class="container mx-auto mt-6">
+    <main class="container mx-auto mt-6 mb-9">
 
         <section class="max-w-screen-xl flex gap-2 mx-auto">
             <input
@@ -39,6 +45,26 @@
                 <button class="btn btn-primary mx-auto block my-4" onclick="handleShowALl()">Show All</button>
              </div>
         </section>
+        <!-- show details mordal -->
+         <!-- Open the modal using ID.showModal() method -->
+
+<dialog id="show_details_modal" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <h3 id="show-detail-phone-name" class="text-lg font-bold"></h3>
+
+    <div id="phone-details-contsiner">
+<img class="p-8 w-8" src="" alt="">
+    </div>
+
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
     </main>
 
     <footer>

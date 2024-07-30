@@ -1,9 +1,10 @@
 // fetching the api 
 
-const loadPhone = async (scarchPhone,isShowAll)=>{
+const loadPhone = async (scarchPhone='13',isShowAll)=>{
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${scarchPhone}`)
     const data =await res.json();
     const phones = data.data
+    // console.log(phones)
     displayPhones(phones,isShowAll)
 }
 
@@ -36,7 +37,7 @@ const phoneContainer = document.getElementById('phone-container');
 // phoneContainer.innerHTML='';
 
 phones.forEach(phone => {
-    console.log(phone)
+    // console.log(phone)
     // 2 .creat a div
     const phoneCard = document.createElement('div')
     phoneCard.classList='card card-compact bg-base-100 p-4 shadow-xl'
@@ -52,8 +53,9 @@ phones.forEach(phone => {
                     <div class="card-body">
                       <h2 class="card-title">${phone.phone_name}!</h2>
                       <p>${phone.slug}</p>
+                      <p>Price : $9999</p>
                       <div class="card-actions justify-end">
-                        <button class="btn btn-primary">Buy Now</button>
+                        <button onClick="handleShowDetails('${phone.slug}')" class="btn btn-primary">Show Detalis</button>
                       </div>
                     </div>
     `
@@ -87,7 +89,35 @@ const toglolLodingSpiner=(isLoding)=>{
     }
 }
 
+// handle show details
+const handleShowDetails =async (id) =>{
+    console.log('show details',id)
+    const res = await fetch(` https://openapi.programming-hero.com/api/phone/${id}`)
+    const data = await res.json()
+    const phone = data.data
+    showPhoneDetails(phone)
+
+}
+// show phone details
+const showPhoneDetails =(phone)=>{
+    console.log(phone)
+    show_details_modal.showModal()
+    const phoneName =document.getElementById('show-detail-phone-name');
+    phoneName.innerText=phone.name
+
+    const showDetailContainer = document.getElementById('phone-details-contsiner')
+    showDetailContainer.innerHTML=`
+    <img {w-8} src="${phone.image}" alt="">
+
+    <h4><span>Storage :</span>${phone.mainFeatures.storage}</h4>
+    <p>GPS : ${phone?.others?.GPS ? phone?.others?.GPS : 'NO GPS Avalible' }</p>
+    `
+    
+    
+
+}
+
 const handleShowALl =()=>{
     handleScarch(true)
 }
-// loadPhone()
+loadPhone()
