@@ -1,18 +1,18 @@
 // fetching the api 
 
-const loadPhone = async (scarchPhone)=>{
+const loadPhone = async (scarchPhone,isShowAll)=>{
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${scarchPhone}`)
     const data =await res.json();
     const phones = data.data
-    displayPhones(phones)
+    displayPhones(phones,isShowAll)
 }
 
 // display all phones 
-const displayPhones =(phones)=>{
+const displayPhones =(phones,isShowAll)=>{
 // console.log(phones)
 
 // hide show alll btn by condition
-if(phones.length > 9){
+if(phones.length > 9 && !isShowAll){
     const showAllBtnContainer=document.getElementById('show-all-container');
     showAllBtnContainer.classList.remove('hidden')
 
@@ -23,12 +23,17 @@ else{
 }
 
 // show only 10 phones fris time 
-phones = phones.slice(0,9)
+// console.log('show all click',isShowAll)
+// why show all part is not working
+  if(!isShowAll){
+    phones=phones.slice(0,12);
+   }
+
 
 
 // 1. catch the container
 const phoneContainer = document.getElementById('phone-container');
-phoneContainer.innerHTML='';
+// phoneContainer.innerHTML='';
 
 phones.forEach(phone => {
     console.log(phone)
@@ -61,13 +66,13 @@ toglolLodingSpiner(false)
 }
 
 // handle scarch btn
-const handleScarch = () =>{
+const handleScarch = (isShowAll) =>{
     //   loder show when lodin proccacing
     toglolLodingSpiner(true)
     const scarchFild =document.getElementById('scarch-fild');
     const scarchFildValue = scarchFild.value;
     console.log(scarchFildValue)
-    loadPhone(scarchFildValue)
+    loadPhone(scarchFildValue , isShowAll)
     scarchFild.value='';
 }
 
@@ -82,4 +87,7 @@ const toglolLodingSpiner=(isLoding)=>{
     }
 }
 
+const handleShowALl =()=>{
+    handleScarch(true)
+}
 // loadPhone()
