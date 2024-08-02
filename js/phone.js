@@ -28,13 +28,12 @@ else{
 // why show all part is not working
   if(!isShowAll){
     phones=phones.slice(0,12);
-   }
-
-
-
+    
+  }
+  
 // 1. catch the container
 const phoneContainer = document.getElementById('phone-container');
-// phoneContainer.innerHTML='';
+phoneContainer.innerHTML='';
 
 phones.forEach(phone => {
     // console.log(phone)
@@ -42,7 +41,7 @@ phones.forEach(phone => {
     const phoneCard = document.createElement('div')
     phoneCard.classList='card card-compact bg-base-100 p-4 shadow-xl'
    
-   
+    
     // 3.  set inner html
     phoneCard.innerHTML=`
          <figure>
@@ -60,9 +59,13 @@ phones.forEach(phone => {
                     </div>
     `
     //4. append child in container
+    
     phoneContainer.appendChild(phoneCard)
+    
+
 
 })
+
 // hide loding spiner
 toglolLodingSpiner(false)
 }
@@ -120,4 +123,4 @@ const showPhoneDetails =(phone)=>{
 const handleShowALl =()=>{
     handleScarch(true)
 }
-loadPhone()
+// loadPhone()
